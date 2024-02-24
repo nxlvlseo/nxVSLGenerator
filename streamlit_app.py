@@ -2,12 +2,12 @@ import streamlit as st
 import openai
 import pandas as pd
 
-# Load your OpenAI API key from an environment variable or secure location
-openai.api_key = 'your_openai_api_key_here'
+# Access the OpenAI API key from Streamlit secrets
+openai.api_key = st.secrets["OPENAI_API_KEY"]
 
 def generate_script(prompt):
     response = openai.Completion.create(
-      engine="text-davinci-003", # Choose the model
+      engine="text-davinci-003",  # Update the engine if needed
       prompt=prompt,
       temperature=0.7,
       max_tokens=1024,
@@ -18,12 +18,10 @@ def generate_script(prompt):
     return response.choices[0].text.strip()
 
 def process_upload(file):
-    # Example function to extract information from the uploaded file
-    # This will vary greatly depending on your file type and contents
-    # Here's a placeholder for reading a CSV file into a DataFrame
+    # Function to extract information from the uploaded file
+    # Adjust according to the format and structure of your reports
     df = pd.read_csv(file)
-    # Extract information needed for the script
-    # You'll replace this part with your own logic
+    # Placeholder for your logic to extract information
     info = "Extracted information from the audit report"
     return info
 
