@@ -1,5 +1,6 @@
 import streamlit as st
 import openai
+import fitz  # PyMuPDF
 import pandas as pd
 
 # Access the OpenAI API key from Streamlit secrets
@@ -18,11 +19,15 @@ def generate_script(prompt):
     return response.choices[0].text.strip()
 
 def process_upload(file):
-    # Function to extract information from the uploaded file
-    # Adjust according to the format and structure of your reports
-    df = pd.read_csv(file)
-    # Placeholder for your logic to extract information
-    info = "Extracted information from the audit report"
+    # Use PyMuPDF to extract text from the PDF
+    doc = fitz.open(stream=file, filetype="pdf")
+    text = ""
+    for page in doc:
+        text += page.get_text()
+    
+    # Now you have the text extracted from the PDF
+    # You can process this text to extract information
+    info = "Extracted information from the audit report based on text analysis"
     return info
 
 def main():
