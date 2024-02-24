@@ -18,15 +18,17 @@ def generate_script(prompt):
     )
     return response.choices[0].text.strip()
 
-def process_upload(file):
-    # Use PyMuPDF to extract text from the PDF
-    doc = fitz.open(stream=file, filetype="pdf")
+def process_upload(uploaded_file):
+    # Convert Streamlit's UploadedFile to bytes
+    pdf_bytes = uploaded_file.getvalue()
+    
+    # Open the PDF with fitz using the bytes
+    doc = fitz.open(stream=pdf_bytes, filetype="pdf")
     text = ""
     for page in doc:
         text += page.get_text()
     
-    # Now you have the text extracted from the PDF
-    # You can process this text to extract information
+    # Process the extracted text to find the information you need
     info = "Extracted information from the audit report based on text analysis"
     return info
 
