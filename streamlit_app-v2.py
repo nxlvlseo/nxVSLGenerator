@@ -9,16 +9,11 @@ openai.api_key = st.secrets["secrets"]["OPENAI_API_KEY"]
 
 def generate_script(prompt):
     try:
-        response = openai.Completion.create(
-          engine="text-davinci-003",  # Ensure this engine is available in your API plan
-          prompt=prompt,
-          temperature=0.7,
-          max_tokens=1024,
-          top_p=1.0,
-          frequency_penalty=0.0,
-          presence_penalty=0.0
+        response = openai.ChatCompletion.create(
+          model="text-davinci-003",  # Adjust according to the available models
+          messages=[{"role": "system", "content": prompt}]
         )
-        return response.choices[0].text.strip()
+        return response['choices'][0]['message']['content']
     except Exception as e:
         st.error(f"An error occurred while generating the script: {e}")
         return ""
