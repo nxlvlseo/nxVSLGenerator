@@ -38,7 +38,7 @@ def main():
     uploaded_file = st.file_uploader("Upload your website audit report", type=['csv', 'txt', 'pdf'])
     if uploaded_file is not None:
         info = process_upload(uploaded_file)
-        prompt = f"Based on the following website audit report: {info}, generate a Video Sales Letter script (VSL). Use the following guidelines to develop the script
+        prompt = f"You are an expert video sale letter copywriter. Based on the following website audit report: {info}, generate a Video Sales Letter script (VSL). Use the following guidelines to develop the script
         1. Opening Hook:
             Start with a strong, attention-grabbing statement or question that immediately addresses a common pain point or goal related to website performance. For instance, 'Did you know that 90% of online businesses overlook critical flaws in their websites that could be costing them thousands in lost revenue?'
 
