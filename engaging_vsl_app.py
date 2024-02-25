@@ -32,7 +32,7 @@ def get_gpt_response(prompt):
     return ""
 
 # Streamlit UI
-st.title("Custom VSL Script Writer GPT Interface")
+st.title("Custom VSL Script Writer GPT")
 user_prompt = st.text_input("Enter your prompt:", "")
 
 if st.button("Generate"):
