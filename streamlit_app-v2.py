@@ -5,7 +5,7 @@ import pandas as pd
 
 # Access the OpenAI API key from Streamlit secrets
 # Ensure your secrets are structured correctly in Streamlit Cloud
-openai.api_key = st.secrets["OPENAI_API_KEY"]
+openai.api_key = st.secrets["secrets"]["OPENAI_API_KEY"]
 
 def generate_script(prompt):
     try:
