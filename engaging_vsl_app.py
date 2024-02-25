@@ -31,6 +31,3 @@ user_prompt = st.text_input("Enter your prompt:", "")
 if st.button("Generate"):
     gpt_response = get_gpt_response(user_prompt)
     st.text_area("GPT Response:", value=gpt_response, height=200)
-
-if __name__ == "__main__":
-    main()
