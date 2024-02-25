@@ -15,20 +15,20 @@ def get_gpt_response(prompt):
     # Send a POST request to the API
     response = requests.post(api_url, json=data)
     
-    # Check the response status code and content type
+    # Debugging output
     print("Status Code:", response.status_code)
-    print("Content-Type:", response.headers['Content-Type'])
+    print("Response Body (first 500 chars):", response.text[:500])
     
-    # Attempt to decode JSON only if the content type is application/json
     if response.headers['Content-Type'] == 'application/json':
         try:
             response_data = response.json()
-            return response_data["response"]
+            return response_data.get("response", "No response key found in JSON.")
         except ValueError as e:
             st.error(f"Failed to decode JSON: {e}")
     else:
         st.error(f"Unexpected content type: {response.headers['Content-Type']}")
-    
+        # For debugging: Show the first part of the response body
+        st.error(f"Response Body (for debugging): {response.text[:500]}")
     return ""
 
 # Streamlit UI
