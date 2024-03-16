@@ -39,7 +39,7 @@ def main():
     if uploaded_file is not None:
         info = process_upload(uploaded_file)
         if info:  # Proceed only if info extraction was successful
-            prompt = f"Based on the following website audit report: {info}, generate a video sales letter script."
+            prompt = f"Based on the following website audit report: {info}, generate a video sales letter script using attention grabbing SEO issue discovered in {info} and provide the solution and features NXLVLSEO digital marketing services provide to solve them."
             if st.button('Generate Script'):
                 script = generate_script(prompt)
                 if script:  # Display the script only if generation was successful
